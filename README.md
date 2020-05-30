@@ -1,4 +1,4 @@
-# Angular-Spotify 👯 🎼 🎹 🎵
+# Angular-Spotify(In Development) 👯 🎼 🎹 🎵
 
 This is `Angular-Spotify`, a Spotify redesigned PWA app that communicates with the Spotify Developer API.
 
