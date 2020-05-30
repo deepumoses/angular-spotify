@@ -23,7 +23,7 @@
   </div>
 </div>
 
-<div class="ham">
+<!-- <div class="ham">
   <input type="checkbox" id="hamburger" (click)="toggleNav()" />
   <label for="hamburger" class="hamburger-menu">
     <div class="hamburger-icon"></div>
@@ -54,4 +54,19 @@
       <a class="category__link last"><i class="fas fa-check"></i> Dynamic</a>
     </div>
   </div>
+</div> -->
+
+<div class="mobile-nav">
+  <a class="category__link" routerLink="browse" routerLinkActive="active"
+    ><i class="fas fa-headphones-alt"></i>
+  </a>
+  <a class="category__link" routerLink="search" routerLinkActive="active"
+    ><i class="fas fa-search"></i>
+  </a>
+  <a class="category__link" routerLink="albums" routerLinkActive="active"
+    ><i class="fas fa-compact-disc"></i>
+  </a>
+  <a class="category__link" routerLink="recent" routerLinkActive="active"
+    ><i class="fas fa-history"></i>
+  </a>
 </div>
