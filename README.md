@@ -1,27 +1,26 @@
-# AngularSpotify
+# React-Spotify 🎺🎸🎻🎤
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 9.1.4.
+This is `React-Spotify`, a React front end client that communicates with the Spotify API.
 
-## Development server
+See it in action [here](http://pau1fitz.github.io/react-spotify).
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files.
+![alt text](https://github.com/Pau1fitz/react-spotify/blob/master/songs.png "Song")
+![alt text](https://github.com/Pau1fitz/react-spotify/blob/master/browser.png "Browse")
 
-## Code scaffolding
+If you wish to run the code locally run the following.
 
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
+```
+yarn
+yarn start
+visit http://localhost:3000
+```
 
-## Build
+Please note that the Spotify API only provides 30 second audio snippets. It may be possible to get the full track by using the [Web Playback SDK](https://beta.developer.spotify.com/documentation/web-playback-sdk/).
 
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory. Use the `--prod` flag for a production build.
 
-## Running unit tests
 
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
+### License
 
-## Running end-to-end tests
+Released under the MIT License. 
 
-Run `ng e2e` to execute the end-to-end tests via [Protractor](http://www.protractortest.org/).
-
-## Further help
-
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI README](https://github.com/angular/angular-cli/blob/master/README.md).
+Check [LICENSE.md](https://github.com/Pau1fitz/react-spotify/blob/master/LICENSE) for more info.
