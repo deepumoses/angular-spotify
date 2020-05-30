@@ -1,0 +1,79 @@
+<div class="artist" *ngIf="artist as artist">
+  <div class="cover">
+    <h1>{{ artist.name }}</h1>
+    <!-- <div class="followers">
+      <span>FOLLOWERS: </span>
+      <span>{{ artist.followers.total }}</span>
+    </div> -->
+  </div>
+
+  <div class="albums">
+    <h2>Albums</h2>
+    <div class="albums-content">
+      <div
+        tabIndex="0"
+        class="music-card"
+        *ngFor="let album of albums"
+        (click)="handleAlbum(album.id)"
+      >
+        <img [src]="album.images[1].url" alt="album" />
+        <!-- <div class="card-title">{{ album.name }}</div> -->
+      </div>
+    </div>
+    <div class="top-tracks"></div>
+    <div class="related"></div>
+  </div>
+
+  <div class="top-tracks">
+    <h2>Top Tracks</h2>
+    <div class="top-tracks-content">
+      <div *ngFor="let track of topTracks">
+        <div
+          class="music-mini-card"
+          *ngIf="track"
+          [ngClass]="{
+            active: currentlyPlaying?.id === track.id && isPlaying
+          }"
+        >
+          <img [src]="track.album.images[2].url" alt="" />
+          <div class="name">
+            {{ track.name }}
+          </div>
+          <div class="playBtn">
+            <i
+              class="fas fa-pause"
+              *ngIf="currentlyPlaying?.id === track.id && isPlaying; else play"
+              (click)="pauseMusic()"
+            ></i>
+            <ng-template #play
+              ><i
+                (click)="playMusic(track.preview_url, track)"
+                class="fas fa-play"
+                *ngIf="track.preview_url"
+              ></i>
+              <i
+                class="fas fa-external-link-alt"
+                (click)="redirect(track.uri)"
+              ></i
+            ></ng-template>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="related-artists">
+    <h1>Related Artists</h1>
+    <div class="content">
+      <div
+        tabIndex="0"
+        class="music-card"
+        *ngFor="let artist of artists"
+        (click)="handleArtist(artist.id)"
+      >
+        <img [src]="artist.images[2].url" alt="artist" />
+        <div class="card-title">{{ artist.name }}</div>
+      </div>
+    </div>
+  </div>
+</div>

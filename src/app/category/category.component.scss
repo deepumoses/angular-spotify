@@ -1,0 +1,56 @@
+@import "../../variables.scss";
+
+.content {
+  padding: 1rem 0;
+  display: flex;
+  flex-wrap: wrap;
+  .music-card {
+    position: relative;
+    margin-right: 0.5rem;
+    margin-bottom: 0.5rem;
+    height: 250px;
+    width: 250px;
+    overflow: hidden;
+    cursor: pointer;
+    img {
+      transition: 0.3s ease;
+      transform: scale(1);
+      width: 250px;
+      height: 250px;
+      filter: grayscale(0);
+    }
+    .card-title {
+      position: absolute;
+      left: 50%;
+      transform: translateX(-50%);
+      bottom: 20px;
+      color: $white;
+      text-transform: capitalize;
+    }
+  }
+
+  .music-card:hover,
+  .music-card:focus {
+    img {
+      transform: scale(1.1);
+      filter: grayscale(1);
+    }
+  }
+}
+
+@media only screen and (max-width: 1000px) {
+  .content,
+  .tabs {
+    justify-content: center;
+  }
+  .music-card {
+    margin-right: 0;
+    margin-bottom: 0;
+    width: 150px !important;
+    height: 150px !important;
+    img {
+      width: 150px !important;
+      height: 150px !important;
+    }
+  }
+}

@@ -1,10 +1,41 @@
 import { Component } from '@angular/core';
+import { Store } from '@ngrx/store';
+import { MyState } from './store.module';
+import * as actions from './actions';
+import { SwUpdate } from '@angular/service-worker';
 
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
-  styleUrls: ['./app.component.scss']
+  styleUrls: ['./app.component.scss'],
 })
 export class AppComponent {
-  title = 'angular-spotify';
+  audio;
+  update: boolean = false;
+  constructor(private store: Store<MyState>, private updates: SwUpdate) {
+    updates.available.subscribe((event) => {
+      this.update = true;
+
+      updates.activateUpdate().then(() => document.location.reload());
+    });
+  }
+
+  ngOnInit() {
+    let hashStr = window.location.hash.substring(1);
+    let rgx = /([^&]+)=([^&]+)/g;
+    let rgxResult,
+      hash = { access_token: '' };
+    while ((rgxResult = rgx.exec(hashStr))) {
+      hash[rgxResult[1]] = rgxResult[2];
+    }
+    let prodrediruri = 'https://spotify-78866.web.app/callback';
+    let localrediruri = 'http://localhost:4200/callback';
+    if (!hash.access_token) {
+      window.location.href = `https://accounts.spotify.com/authorize?client_id=22553693d2b448c0b3b63ed0176248be&scope=playlist-read-private%20playlist-read-collaborative%20playlist-modify-public%20user-read-recently-played%20playlist-modify-private%20ugc-image-upload%20user-follow-modify%20user-follow-read%20user-library-read%20user-library-modify%20user-read-private%20user-read-email%20user-top-read%20user-read-playback-state&response_type=token&redirect_uri=${localrediruri}`;
+    } else {
+      console.log(hash.access_token);
+      // this.ngRedux.dispatch(actions.setToken(hash.access_token));
+      localStorage.setItem('token', hash.access_token);
+    }
+  }
 }

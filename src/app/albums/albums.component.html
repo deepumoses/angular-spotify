@@ -1,0 +1,12 @@
+<h1>Albums</h1>
+<div class="content">
+  <div
+    tabIndex="0"
+    class="music-card"
+    *ngFor="let album of albums"
+    (click)="handleAlbum(album.id)"
+  >
+    <img [src]="album.images[0].url" alt="album" />
+    <div class="card-title">{{ album.name }}</div>
+  </div>
+</div>

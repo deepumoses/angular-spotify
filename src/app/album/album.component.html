@@ -1,0 +1,33 @@
+<div class="playlist">
+  <h1>Album</h1>
+  <div class="content">
+    <div *ngFor="let alb of album">
+      <div
+        class="music-mini-card"
+        [ngClass]="{
+          active: currentlyPlaying?.id === alb.id && isPlaying
+        }"
+      >
+        <div class="name">
+          <div>{{ alb.name }}</div>
+          <div>{{ alb.artists[0].name }}</div>
+        </div>
+        <div class="playBtn">
+          <i
+            class="fas fa-pause"
+            *ngIf="currentlyPlaying?.id === alb.id && isPlaying; else play"
+            (click)="pauseMusic()"
+          ></i>
+          <ng-template #play
+            ><i
+              (click)="playMusic(alb.preview_url, alb)"
+              class="fas fa-play"
+              *ngIf="alb.preview_url"
+            ></i>
+            <i class="fas fa-external-link-alt" (click)="redirect(alb.uri)"></i
+          ></ng-template>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

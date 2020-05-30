@@ -1,0 +1,39 @@
+<div class="recent">
+  <h1>Recently Played</h1>
+  <div class="content">
+    <div *ngFor="let recent of recents">
+      <div
+        class="music-mini-card"
+        [ngClass]="{
+          active: currentlyPlaying?.id === recent.track.id && isPlaying
+        }"
+      >
+        <img [src]="recent.track.album.images[2].url" alt="" />
+        <div class="name">
+          {{ recent.track.name || "---" }}
+        </div>
+        <div class="playBtn">
+          <i
+            class="fas fa-pause"
+            *ngIf="
+              currentlyPlaying?.id === recent.track.id && isPlaying;
+              else play
+            "
+            (click)="pauseMusic()"
+          ></i>
+          <ng-template #play
+            ><i
+              (click)="playMusic(recent.track.preview_url, recent.track)"
+              class="fas fa-play"
+              *ngIf="recent.track.preview_url"
+            ></i>
+            <i
+              class="fas fa-external-link-alt"
+              (click)="redirect(recent.track.uri)"
+            ></i
+          ></ng-template>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

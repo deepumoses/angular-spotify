@@ -1,0 +1,155 @@
+@import "../../variables.scss";
+
+.music-player {
+  position: fixed;
+  width: 100%;
+  height: 70px;
+  left: 0;
+  bottom: 0;
+  padding: 1rem;
+  background: linear-gradient(to bottom right, #11ffbd, #aaffa9);
+  color: $teal-dark;
+  display: flex;
+  align-items: center;
+  .song-img {
+    text-align: center;
+    width: 10%;
+    .fas {
+      font-size: 2rem;
+    }
+  }
+
+  .song-info {
+    display: flex;
+    flex-direction: column;
+    margin-right: 1rem;
+    width: 20%;
+
+    .name {
+      font-size: 0.8rem;
+      text-transform: uppercase;
+      font-weight: 600;
+      div:nth-child(2) {
+        color: #a2a2a2;
+      }
+    }
+    .artist {
+      font-size: 0.7rem;
+    }
+  }
+}
+
+.controls {
+  display: flex;
+  flex-direction: column;
+  width: 40%;
+  .upper {
+    display: flex;
+    justify-content: center;
+
+    .prev {
+      font-size: 1.5rem;
+      padding: 0 1rem;
+      cursor: pointer;
+    }
+    .play,
+    .pause {
+      font-size: 1.5rem;
+      padding: 0 1rem;
+      cursor: pointer;
+    }
+    .next {
+      font-size: 1.5rem;
+      padding: 0 1rem;
+      cursor: pointer;
+    }
+  }
+}
+
+.volume {
+  display: flex;
+  align-items: center;
+  .volume-slider {
+    width: 120px;
+    height: 5px;
+    background: #199e78;
+    border-radius: 4px;
+    outline: none;
+    opacity: 1;
+    -webkit-appearance: none;
+
+    &::-webkit-slider-thumb {
+      -webkit-appearance: none;
+      appearance: none;
+      width: 12px;
+      height: 12px;
+      background: $teal-dark;
+      cursor: pointer;
+      border-radius: 50%;
+    }
+  }
+  input[type="range"]::-moz-range-track {
+    width: 100px;
+    height: 3px;
+    border-radius: 5px;
+    outline: none;
+    background: $teal;
+  }
+  i {
+    margin-right: 0.5rem;
+  }
+}
+
+.seeker {
+  display: flex;
+  align-items: center;
+  .audio-seeker {
+    width: 100%;
+    height: 5px;
+    background: #199e78;
+    border-radius: 4px;
+    outline: none;
+    opacity: 1;
+    -webkit-appearance: none;
+    position: absolute;
+    top: -5px;
+    left: 0;
+
+    &::-webkit-slider-thumb {
+      -webkit-appearance: none;
+      appearance: none;
+      width: 12px;
+      height: 12px;
+      background: #199e78;
+      cursor: pointer;
+      border-radius: 50%;
+    }
+  }
+  input[type="range"]::-moz-range-track {
+    width: 100px;
+    height: 3px;
+    border-radius: 5px;
+    outline: none;
+    background: #199e78;
+  }
+  i {
+    margin-right: 0.5rem;
+  }
+}
+
+@media only screen and (max-width: 800px) {
+  .song-img {
+    display: none;
+  }
+}
+
+@media only screen and (max-width: 500px) {
+  .song-info {
+    width: 80% !important;
+  }
+  .volume,
+  .controls .prev,
+  .controls .next {
+    display: none;
+  }
+}

@@ -1,0 +1,55 @@
+<h1>Browse</h1>
+<div class="tabs">
+  <div
+    class="tab-item"
+    [ngClass]="{ active: currentTab === 'genres' }"
+    (click)="handleGenres()"
+  >
+    GENRES
+  </div>
+  <div
+    class="tab-item"
+    [ngClass]="{ active: currentTab === 'newReleases' }"
+    (click)="handleNewReleases()"
+  >
+    NEW RELEASES
+  </div>
+  <div
+    class="tab-item"
+    [ngClass]="{ active: currentTab === 'featured' }"
+    (click)="handleFeatured()"
+  >
+    FEATURED
+  </div>
+</div>
+<div class="content" *ngIf="currentTab === 'genres'">
+  <div
+    tabIndex="0"
+    class="music-card"
+    *ngFor="let category of categories"
+    (click)="handleGenre(category.id)"
+  >
+    <img [src]="category.icons[0].url" alt="category" />
+    <div class="card-title">{{ category.name }}</div>
+  </div>
+</div>
+<div class="content" *ngIf="currentTab === 'newReleases'">
+  <div
+    tabIndex="0"
+    class="music-card"
+    *ngFor="let release of newReleases"
+    (click)="handleRelease(release.id)"
+  >
+    <img [src]="release.images[0].url" alt="feature" />
+  </div>
+</div>
+<div class="content" *ngIf="currentTab === 'featured'">
+  <div
+    tabIndex="0"
+    class="music-card"
+    *ngFor="let feature of featured"
+    (click)="handlePlayList(feature.id)"
+  >
+    <img [src]="feature.images[0].url" alt="feature" />
+  </div>
+</div>

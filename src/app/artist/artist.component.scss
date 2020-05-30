@@ -1,0 +1,166 @@
+@import "../../variables.scss";
+
+.artist {
+  .cover {
+    h1 {
+      font-size: 3rem;
+      font-weight: 900;
+      color: #11ffbd;
+      text-transform: capitalize;
+    }
+    .followers {
+      color: #eee;
+      font-size: 0.8rem;
+    }
+  }
+  .genres {
+    display: flex;
+    align-items: center;
+    flex-direction: row;
+    justify-content: space-around;
+  }
+}
+
+.albums {
+  margin: 2rem 0;
+  .albums-content {
+    padding: 1rem 0;
+    display: flex;
+    flex-wrap: wrap;
+    .music-card {
+      position: relative;
+      margin-right: 0.5rem;
+      margin-bottom: 0.5rem;
+      height: 250px;
+      width: 250px;
+      overflow: hidden;
+      cursor: pointer;
+      img {
+        transition: 0.3s ease;
+        transform: scale(1);
+        width: 250px;
+        height: 250px;
+        filter: grayscale(0);
+      }
+      .card-title {
+        position: absolute;
+        left: 50%;
+        transform: translateX(-50%);
+        bottom: 20px;
+        color: $white;
+        text-transform: capitalize;
+      }
+    }
+
+    .music-card:hover,
+    .music-card:focus {
+      img {
+        transform: scale(1.1);
+        filter: grayscale(1);
+      }
+    }
+  }
+}
+
+h2 {
+  font-size: 1.4rem;
+  text-transform: uppercase;
+  color: $white;
+}
+
+.top-tracks-content {
+  display: flex;
+  flex-wrap: wrap;
+  margin: 2rem 0;
+
+  .music-mini-card {
+    font-size: 0.8rem;
+    height: 60px;
+    width: 300px;
+    padding: 1rem;
+    padding-left: 0;
+    display: flex;
+    align-items: center;
+    //   box-shadow: 0 3px 6px rgba(0, 0, 0, 0.16), 0 3px 6px rgba(0, 0, 0, 0.23);
+    margin: 1rem 0;
+    margin-right: 0.5rem;
+    background-color: $black-light;
+    color: $white;
+    transition: background-color 0.3s ease;
+
+    &.active {
+      background-color: $teal;
+      color: $black-light;
+    }
+
+    .name {
+      width: 80%;
+      padding-left: 0.5rem;
+      div:nth-child(2) {
+        color: #a2a2a2;
+      }
+    }
+
+    .playBtn {
+      display: flex;
+      align-items: center;
+      i {
+        padding: 5px;
+        cursor: pointer;
+      }
+    }
+  }
+}
+
+@import "../../variables.scss";
+
+h1 {
+  font-size: 2rem;
+  font-weight: 900;
+  color: $teal;
+}
+
+.content {
+  padding: 1rem 0;
+  display: flex;
+  flex-wrap: wrap;
+  .music-card {
+    position: relative;
+    margin-right: 0.5rem;
+    margin-bottom: 0.5rem;
+    height: 150px;
+    width: 150px;
+    border-radius: 50%;
+    overflow: hidden;
+    cursor: pointer;
+    img {
+      transition: 0.3s ease;
+      transform: scale(1);
+      width: 250px;
+      height: 250px;
+      filter: grayscale(0);
+    }
+    .card-title {
+      position: absolute;
+      left: 50%;
+      transform: translateX(-50%);
+      bottom: 20px;
+      color: $white;
+      text-transform: capitalize;
+    }
+  }
+
+  .music-card:hover,
+  .music-card:focus {
+    img {
+      transform: scale(1.1);
+      filter: grayscale(1);
+    }
+  }
+}
+
+@media only screen and (max-width: 1000px) {
+  .content {
+    justify-content: center;
+  }
+}

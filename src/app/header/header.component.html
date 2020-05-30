@@ -1,0 +1,23 @@
+<header>
+  <div class="logo">
+    <i class="fab fa-spotify"></i><span class="hide">Spotify</span>
+  </div>
+  <div
+    class="search-box"
+    (click)="toggleSearchView()"
+    [ngClass]="{
+      active: searchView
+    }"
+  >
+    <i class="fas fa-search"></i
+    ><input
+      type="text"
+      name="search"
+      id="search"
+      placeholder="Search songs, artists, genres..."
+    />
+  </div>
+  <div class="user-profile">
+    <img [src]="imageUrl" alt="profile" />
+  </div>
+</header>

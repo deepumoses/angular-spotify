@@ -1,0 +1,57 @@
+<div class="sidenav">
+  <div class="categories">
+    <div class="category__title">BROWSE MUSIC</div>
+    <a class="category__link" routerLink="browse" routerLinkActive="active"
+      ><i class="fas fa-search"></i> Explore</a
+    >
+    <a class="category__link" routerLink="albums" routerLinkActive="active"
+      ><i class="fas fa-compact-disc"></i> Albums</a
+    >
+    <a class="category__link last"><i class="far fa-play-circle"></i> Radio</a>
+    <div class="category__title">YOUR LIBRARY</div>
+    <a class="category__link" routerLink="recent" routerLinkActive="active"
+      ><i class="fas fa-history"></i> Recently played</a
+    >
+    <a class="category__link"><i class="far fa-heart"></i> Favorites</a>
+    <a class="category__link" routerLink="artists" routerLinkActive="active"
+      ><i class="fas fa-user-friends"></i> Artists</a
+    >
+    <a class="category__link"><i class="fas fa-music"></i> Songs</a>
+    <a class="category__link last"><i class="far fa-star"></i> Genres</a>
+    <div class="category__title">PLAYLISTS</div>
+    <a class="category__link last"><i class="fas fa-check"></i> Dynamic</a>
+  </div>
+</div>
+
+<div class="ham">
+  <input type="checkbox" id="hamburger" (click)="toggleNav()" />
+  <label for="hamburger" class="hamburger-menu">
+    <div class="hamburger-icon"></div>
+  </label>
+  <div class="menu-items-container">
+    <div class="categories">
+      <div class="category__title">BROWSE MUSIC</div>
+      <a class="category__link" routerLink="browse" routerLinkActive="active"
+        ><i class="fas fa-search"></i> Explore</a
+      >
+      <a class="category__link" routerLink="albums" routerLinkActive="active"
+        ><i class="fas fa-compact-disc"></i> Albums</a
+      >
+      <a class="category__link last"
+        ><i class="far fa-play-circle"></i> Radio</a
+      >
+      <div class="category__title">YOUR LIBRARY</div>
+      <a class="category__link" routerLink="recent" routerLinkActive="active"
+        ><i class="fas fa-history"></i> Recently played</a
+      >
+      <a class="category__link"><i class="far fa-heart"></i> Favorites</a>
+      <a class="category__link" routerLink="artists" routerLinkActive="active"
+        ><i class="fas fa-user-friends"></i> Artists</a
+      >
+      <a class="category__link"><i class="fas fa-music"></i> Songs</a>
+      <a class="category__link last"><i class="far fa-star"></i> Genres</a>
+      <div class="category__title">PLAYLISTS</div>
+      <a class="category__link last"><i class="fas fa-check"></i> Dynamic</a>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,10 @@
+<div class="content">
+  <div
+    tabIndex="0"
+    class="music-card"
+    *ngFor="let playlist of playlists"
+    (click)="handlePlayList(playlist.id)"
+  >
+    <img [src]="playlist.images[0].url" alt="playlist" />
+  </div>
+</div>

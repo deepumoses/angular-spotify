@@ -1,0 +1,15 @@
+@import "../../variables.scss";
+
+.main {
+  padding: 2rem;
+  padding-left: calc(250px + 2rem);
+  padding-top: 70px;
+}
+
+@media only screen and (max-width: 1000px) {
+  .main {
+    padding: 5px;
+    padding-left: 5px;
+    padding-top: 100px;
+  }
+}

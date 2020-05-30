@@ -1,0 +1,57 @@
+@import "../../variables.scss";
+
+.recent {
+  h1 {
+    font-size: 2rem;
+    font-weight: 900;
+    color: $teal;
+  }
+
+  .content {
+    display: flex;
+    flex-wrap: wrap;
+    margin: 2rem 0;
+    .music-mini-card {
+      font-size: 0.8rem;
+      height: 60px;
+      width: 300px;
+      padding: 1rem;
+      padding-left: 0;
+      display: flex;
+      align-items: center;
+      //   box-shadow: 0 3px 6px rgba(0, 0, 0, 0.16), 0 3px 6px rgba(0, 0, 0, 0.23);
+      margin: 1rem 0;
+      margin-right: 0.5rem;
+      background-color: $black-light;
+      color: $white;
+      transition: background-color 0.3s ease;
+
+      &.active {
+        background-color: $teal;
+        color: $black-light;
+      }
+      .name {
+        width: 80%;
+        padding-left: 0.5rem;
+        div:nth-child(2) {
+          color: #a2a2a2;
+        }
+      }
+
+      .playBtn {
+        display: flex;
+        align-items: center;
+        i {
+          padding: 5px;
+          cursor: pointer;
+        }
+      }
+    }
+  }
+}
+
+@media only screen and (max-width: 1000px) {
+  .content {
+    justify-content: center;
+  }
+}

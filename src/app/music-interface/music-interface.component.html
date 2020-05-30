@@ -1,0 +1,55 @@
+<div class="music-player" *ngIf="currentlyPlaying as CP">
+  <div class="song-img">
+    <img
+      *ngIf="CP.album; else musicIcon"
+      src="{{ CP.album.images[2].url }}"
+      alt=""
+    />
+    <ng-template #musicIcon>
+      <i class="fas fa-music"></i>
+    </ng-template>
+  </div>
+  <div class="song-info">
+    <span class="name">{{ currentlyPlaying?.name }}</span>
+    <span class="artist" *ngIf="CP.album">{{
+      (currentlyPlaying?.album.artists)[0].name
+    }}</span>
+  </div>
+  <div class="controls">
+    <div class="upper">
+      <div class="prev"><i class="fas fa-angle-left"></i></div>
+      <div class="play">
+        <i
+          class="far fa-play-circle"
+          (click)="playMusic()"
+          *ngIf="!isPlaying"
+        ></i>
+        <i
+          class="fas fa-pause-circle"
+          (click)="pauseMusic()"
+          *ngIf="isPlaying"
+        ></i>
+      </div>
+      <div class="next"><i class="fas fa-angle-right"></i></div>
+    </div>
+  </div>
+  <div class="volume">
+    <i class="fa fa-volume-up"></i>
+    <input
+      class="volume-slider"
+      type="range"
+      min="{0}"
+      max="{100}"
+      (change)="updateVolume($event)"
+    />
+  </div>
+  <div class="seeker">
+    <input
+      class="audio-seeker"
+      type="range"
+      min="0"
+      max="30"
+      (click)="updateSeek($event)"
+    />
+  </div>
+</div>

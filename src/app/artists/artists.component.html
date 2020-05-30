@@ -1,0 +1,12 @@
+<h1>Artists</h1>
+<div class="content">
+  <div
+    tabIndex="0"
+    class="music-card"
+    *ngFor="let artist of artists"
+    (click)="handleArtist(artist.id)"
+  >
+    <img [src]="artist.images[0].url" alt="artist" />
+    <div class="card-title">{{ artist.name }}</div>
+  </div>
+</div>

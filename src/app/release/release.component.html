@@ -1,0 +1,28 @@
+<div class="release">
+  <h1>Release</h1>
+  <div class="content">
+    <div *ngFor="let rl of release">
+      <div class="music-mini-card">
+        <div class="name">
+          <span>{{ rl.name }}</span>
+          <span class="artist-name">{{ rl.artists[0].name }}</span>
+        </div>
+        <div class="playBtn">
+          <i
+            class="fas fa-pause"
+            *ngIf="currentlyPlaying?.id === rl.id && isPlaying; else play"
+            (click)="pauseMusic()"
+          ></i>
+          <ng-template #play
+            ><i
+              (click)="playMusic(rl.preview_url, rl)"
+              class="fas fa-play"
+              *ngIf="rl.preview_url"
+            ></i
+          ></ng-template>
+          <i class="fas fa-external-link-alt" (click)="redirect(rl.uri)"></i>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
