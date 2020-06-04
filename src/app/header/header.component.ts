@@ -37,9 +37,13 @@ export class HeaderComponent implements OnInit {
     );
   }
 
-  toggleSearchView = () => {
+  displaySearchView = () => {
     this.searchView = !this.searchView;
     this.router.navigate(['search']);
+  };
+
+  hideSearchView = () => {
+    this.searchView = !this.searchView;
   };
 
   handleSearch = (e) => {

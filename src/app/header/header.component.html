@@ -1,5 +1,5 @@
 <header>
-  <div class="logo">
+  <div class="logo" *ngIf="!searchView">
     <svg
       xmlns="http://www.w3.org/2000/svg"
       width="512"
@@ -64,7 +64,6 @@
   </div>
   <div
     class="search-box"
-    (click)="toggleSearchView()"
     (keyup)="handleSearch($event)"
     [ngClass]="{
       active: searchView
@@ -77,9 +76,12 @@
       id="search"
       placeholder="Search songs, artists, genres..."
       autocomplete="off"
+      (focus)="displaySearchView()"
+      (blur)="hideSearchView()"
     />
+    <i class="fas fa-times-circle"></i>
   </div>
-  <div class="user-profile">
+  <div class="user-profile" *ngIf="!searchView">
     <img [src]="imageUrl" alt="profile" />
   </div>
 </header>
