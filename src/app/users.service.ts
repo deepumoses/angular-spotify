@@ -170,4 +170,16 @@ export class UsersService {
       options
     );
   };
+
+  getSearchResults = (token, searchVal) => {
+    let headers = new HttpHeaders({
+      'Content-Type': 'application/json',
+      Authorization: 'Bearer ' + token,
+    });
+    let options = { headers: headers };
+    return this.http.get(
+      `https://api.spotify.com/v1/search?q=${searchVal}&type=track%2Cartist&limit=20`,
+      options
+    );
+  };
 }

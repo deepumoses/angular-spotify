@@ -14,6 +14,7 @@ export interface apiState {
   album: object;
   artists: Array<object>;
   artist: object;
+  search: object;
 }
 
 export const INITIAL_API_STATE: apiState = {
@@ -30,6 +31,7 @@ export const INITIAL_API_STATE: apiState = {
   album: {},
   artists: [],
   artist: {},
+  search: {},
 };
 
 export function apiReducer(
@@ -153,6 +155,14 @@ export function apiReducer(
       };
     case actions.FETCH_ARTIST_FAILURE:
       return { ...state, artist: {} };
+    case actions.SET_SEARCH_VALUE_SUCCESS:
+      return { ...state, search: { value: action.data } };
+    case actions.SET_SEARCH_VALUE_FAILURE:
+      return { ...state, search: { value: null } };
+    case actions.SET_SEARCH_RESULTS_SUCCESS:
+      return { ...state, search: { results: action.data } };
+    case actions.SET_SEARCH_RESULTS_FAILURE:
+      return { ...state, search: { results: null } };
     default:
       return state;
   }

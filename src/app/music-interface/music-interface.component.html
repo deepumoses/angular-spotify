@@ -34,14 +34,16 @@
     </div>
   </div>
   <div class="volume">
-    <i class="fa fa-volume-up"></i>
-    <input
-      class="volume-slider"
-      type="range"
-      min="{0}"
-      max="{100}"
-      (change)="updateVolume($event)"
-    />
+    <div>
+      <i class="fa fa-volume-up"></i>
+      <input
+        class="volume-slider"
+        type="range"
+        min="{0}"
+        max="{100}"
+        (change)="updateVolume($event)"
+      />
+    </div>
   </div>
   <div class="seeker">
     <input

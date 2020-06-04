@@ -20,9 +20,9 @@ header {
     background-color: $black-light;
     font-weight: 700;
 
-    i {
-      font-size: 2rem;
-      margin-right: 0.5rem;
+    svg {
+      height: 2rem;
+      width: 2rem;
     }
   }
   .search-box {
@@ -61,6 +61,10 @@ header {
       border-radius: 25px;
     }
   }
+
+  .brand {
+    margin-left: 0.5rem;
+  }
 }
 
 @media only screen and (max-width: 1000px) {
@@ -68,13 +72,14 @@ header {
     height: 70px;
     width: 100%;
     display: flex;
+    justify-content: space-between;
     padding: 0 0.5rem;
-    padding-left: 4rem;
     position: fixed;
     top: 0;
     left: 0;
     .logo {
       width: auto;
+      background-color: transparent;
     }
     .hide {
       display: none;
@@ -124,10 +129,10 @@ header {
 
     .user-profile {
       position: relative;
-      margin-left: 1.5rem;
+      right: 0;
       img {
-        width: 20px;
-        height: 20px;
+        width: 32px;
+        height: 32px;
         border-radius: 25px;
       }
     }

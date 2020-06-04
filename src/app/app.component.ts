@@ -24,14 +24,22 @@ export class AppComponent {
     let hashStr = window.location.hash.substring(1);
     let rgx = /([^&]+)=([^&]+)/g;
     let rgxResult,
-      hash = { access_token: '' };
+      hash = { access_token: '', expires_in: 3600 };
     while ((rgxResult = rgx.exec(hashStr))) {
       hash[rgxResult[1]] = rgxResult[2];
     }
-    let prodrediruri = 'https://spotify-78866.web.app/callback';
-    let localrediruri = 'http://localhost:4200/callback';
+
+    let prodredirurl = 'https://spotify-78866.web.app/callback';
+    let localredirurl = 'http://localhost:4200/callback';
+
+    setTimeout(() => {
+      window.location.href = prodredirurl;
+    }, hash.expires_in * 1000);
+
+    console.log('hash', hash.expires_in);
+
     if (!hash.access_token) {
-      window.location.href = `https://accounts.spotify.com/authorize?client_id=22553693d2b448c0b3b63ed0176248be&scope=playlist-read-private%20playlist-read-collaborative%20playlist-modify-public%20user-read-recently-played%20playlist-modify-private%20ugc-image-upload%20user-follow-modify%20user-follow-read%20user-library-read%20user-library-modify%20user-read-private%20user-read-email%20user-top-read%20user-read-playback-state&response_type=token&redirect_uri=${localrediruri}`;
+      window.location.href = `https://accounts.spotify.com/authorize?client_id=22553693d2b448c0b3b63ed0176248be&scope=playlist-read-private%20playlist-read-collaborative%20playlist-modify-public%20user-read-recently-played%20playlist-modify-private%20ugc-image-upload%20user-follow-modify%20user-follow-read%20user-library-read%20user-library-modify%20user-read-private%20user-read-email%20user-top-read%20user-read-playback-state&response_type=token&redirect_uri=${localredirurl}`;
     } else {
       console.log(hash.access_token);
       // this.ngRedux.dispatch(actions.setToken(hash.access_token));

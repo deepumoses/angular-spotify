@@ -34,6 +34,10 @@ export const PAUSE_MUSIC = "PAUSE_MUSIC";
 export const SET_CURRENTLY_PLAYING = "SET_CURRENTLY_PLAYING";
 export const SET_VOLUME = "SET_VOLUME";
 export const SET_SEEK = "SET_SEEK";
+export const SET_SEARCH_VALUE_SUCCESS = "SET_SEARCH_VALUE_SUCCESS";
+export const SET_SEARCH_VALUE_FAILURE = "SET_SEARCH_VALUE_FAILURE";
+export const SET_SEARCH_RESULTS_SUCCESS = "SET_SEARCH_RESULTS_SUCCESS";
+export const SET_SEARCH_RESULTS_FAILURE = "SET_SEARCH_RESULTS_FAILURE";
 
 export const setToken = (token) => {
   return {
@@ -223,6 +227,34 @@ export const artistsTopTracksSuccess = (data) => {
 export const artistFailure = () => {
   return {
     type: FETCH_ARTIST_FAILURE,
+  };
+};
+
+//search
+
+export const searchResultsSuccess = (data) => {
+  return {
+    type: SET_SEARCH_RESULTS_SUCCESS,
+    data,
+  };
+};
+
+export const searchResultsFailure = () => {
+  return {
+    type: SET_SEARCH_RESULTS_FAILURE,
+  };
+};
+
+export const setSearchValueSuccess = (data) => {
+  return {
+    type: SET_SEARCH_VALUE_SUCCESS,
+    data,
+  };
+};
+
+export const setSearchValueFailure = () => {
+  return {
+    type: SET_SEARCH_VALUE_FAILURE,
   };
 };
 

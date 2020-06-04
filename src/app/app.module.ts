@@ -26,6 +26,7 @@ import { ArtistComponent } from './artist/artist.component';
 import { ServiceWorkerModule } from '@angular/service-worker';
 import { environment } from '../environments/environment';
 import { StoreDevtoolsModule } from '@ngrx/store-devtools';
+import { SearchComponent } from './search/search.component';
 
 @NgModule({
   declarations: [
@@ -43,6 +44,7 @@ import { StoreDevtoolsModule } from '@ngrx/store-devtools';
     AlbumComponent,
     ArtistsComponent,
     ArtistComponent,
+    SearchComponent,
   ],
   imports: [
     BrowserModule,

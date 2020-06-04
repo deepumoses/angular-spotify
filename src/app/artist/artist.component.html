@@ -71,7 +71,7 @@
         *ngFor="let artist of artists"
         (click)="handleArtist(artist.id)"
       >
-        <img [src]="artist.images[2].url" alt="artist" />
+        <img [src]="artist.images[0].url" alt="artist" />
         <div class="card-title">{{ artist.name }}</div>
       </div>
     </div>

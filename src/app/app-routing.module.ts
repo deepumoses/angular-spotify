@@ -9,6 +9,7 @@ import { AlbumsComponent } from './albums/albums.component';
 import { AlbumComponent } from './album/album.component';
 import { ArtistsComponent } from './artists/artists.component';
 import { ArtistComponent } from './artist/artist.component';
+import { SearchComponent } from './search/search.component';
 
 const routes: Routes = [
   {
@@ -46,6 +47,10 @@ const routes: Routes = [
   {
     path: 'artist',
     component: ArtistComponent,
+  },
+  {
+    path: 'search',
+    component: SearchComponent,
   },
   {
     path: '**',

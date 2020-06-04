@@ -1,0 +1,55 @@
+<div *ngIf="artistResults">
+  <h1>Artists</h1>
+  <div class="content">
+    <div
+      tabIndex="0"
+      class="music-card"
+      *ngFor="let artist of artistResults.items"
+      (click)="handleArtist(artist.id)"
+    >
+      <img [src]="artist.images[0].url" alt="artist" />
+      <div class="card-title">{{ artist.name }}</div>
+    </div>
+  </div>
+</div>
+
+<div *ngIf="trackResults">
+  <div class="tracks">
+    <h1>Tracks</h1>
+    <div class="content">
+      <div *ngFor="let plist of trackResults.items">
+        <div
+          class="music-mini-card"
+          [ngClass]="{
+            active: currentlyPlaying
+              ? currentlyPlaying.id === plist.id && isPlaying
+              : false
+          }"
+        >
+          <img [src]="plist.album.images[2].url" alt="" />
+          <div class="name">
+            {{ plist.name }}
+          </div>
+          <div class="playBtn">
+            <i
+              class="fas fa-pause"
+              *ngIf="currentlyPlaying?.id === plist.id && isPlaying; else play"
+              (click)="pauseMusic()"
+            ></i>
+            <ng-template #play
+              ><i
+                (click)="playMusic(plist.preview_url, plist.track)"
+                class="fas fa-play"
+                *ngIf="plist.preview_url"
+              ></i>
+              <i
+                class="fas fa-external-link-alt"
+                (click)="redirect(plist.uri)"
+              ></i
+            ></ng-template>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

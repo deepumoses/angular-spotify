@@ -69,6 +69,12 @@
 .volume {
   display: flex;
   align-items: center;
+  justify-content: flex-end;
+  flex: 1;
+  div {
+    display: flex;
+    align-items: center;
+  }
   .volume-slider {
     width: 120px;
     height: 5px;
@@ -137,6 +143,14 @@
   }
 }
 
+@media only screen and (max-width: 1000px) {
+  .music-player {
+    bottom: 60px;
+  }
+  .song-info {
+    flex: 1;
+  }
+}
 @media only screen and (max-width: 800px) {
   .song-img {
     display: none;

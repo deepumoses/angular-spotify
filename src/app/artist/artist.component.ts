@@ -36,12 +36,14 @@ export class ArtistComponent implements OnInit {
     store.select('musicReducer').subscribe((val) => {
       this.currentlyPlaying = val.currentlyPlaying;
     });
+    this.store.select('apiReducer').subscribe((val) => {
+      this.artistId = val.artist.id;
+    });
   }
 
   ngOnInit(): void {
-    this.store.select('apiReducer').subscribe((val) => {
-      this.artistId = val.artist.id;
-      this.userService.getArtistsAlbums(this.tkn, val.artist.id).subscribe(
+    if (this.artistId) {
+      this.userService.getArtistsAlbums(this.tkn, this.artistId).subscribe(
         (response) => {
           this.store.dispatch(actions.artistsAlbumsSuccess(response));
           this.store.select('apiReducer').subscribe((val) => {
@@ -52,7 +54,7 @@ export class ArtistComponent implements OnInit {
           this.store.dispatch(actions.artistsFailure());
         }
       );
-      this.userService.getArtistsTopTracks(this.tkn, val.artist.id).subscribe(
+      this.userService.getArtistsTopTracks(this.tkn, this.artistId).subscribe(
         (response) => {
           this.store.dispatch(actions.artistsTopTracksSuccess(response));
           this.store.select('apiReducer').subscribe((val) => {
@@ -63,7 +65,7 @@ export class ArtistComponent implements OnInit {
           this.store.dispatch(actions.artistsFailure());
         }
       );
-      this.userService.getArtistsRelated(this.tkn, val.artist.id).subscribe(
+      this.userService.getArtistsRelated(this.tkn, this.artistId).subscribe(
         (response) => {
           this.store.dispatch(actions.artistsRelatedSuccess(response));
           this.store.select('apiReducer').subscribe((val) => {
@@ -74,7 +76,7 @@ export class ArtistComponent implements OnInit {
           this.store.dispatch(actions.artistsFailure());
         }
       );
-    });
+    }
   }
 
   playMusic = (url, currentlyPlayingData) => {
