@@ -1,3 +1,9 @@
-<div class="main">
+<div
+  class="main"
+  [ngClass]="{
+    loading: loader
+  }"
+>
+  <loader *ngIf="loader"></loader>
   <router-outlet></router-outlet>
 </div>

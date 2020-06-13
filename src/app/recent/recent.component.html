@@ -1,7 +1,7 @@
 <div class="recent">
   <h1>Recently Played</h1>
   <div class="content">
-    <div *ngFor="let recent of recents">
+    <div *ngFor="let recent of recents; index as ind">
       <div
         class="music-mini-card"
         [ngClass]="{
@@ -23,7 +23,7 @@
           ></i>
           <ng-template #play
             ><i
-              (click)="playMusic(recent.track.preview_url, recent.track)"
+              (click)="playMusic(recent.track.preview_url, recent.track, ind)"
               class="fas fa-play"
               *ngIf="recent.track.preview_url"
             ></i>

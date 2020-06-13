@@ -42,75 +42,93 @@ export class BrowseComponent implements OnInit {
 
   handleGenres = () => {
     console.log('in handlegenres');
+    this.store.dispatch(actions.showLoader());
     this.currentTab = 'genres';
     this.userService.getCategories(this.tkn).subscribe(
       (response) => {
         this.store.dispatch(actions.categoriesSuccess(response));
+        this.store.dispatch(actions.hideLoader());
       },
       (error) => {
         this.store.dispatch(actions.categoriesFailure());
+        this.store.dispatch(actions.hideLoader());
       }
     );
   };
 
   handleNewReleases = () => {
     this.currentTab = 'newReleases';
+    this.store.dispatch(actions.showLoader());
     this.userService.getNewReleases(this.tkn).subscribe(
       (response) => {
         this.store.dispatch(actions.newReleasesSuccess(response));
+        this.store.dispatch(actions.hideLoader());
       },
       (error) => {
         this.store.dispatch(actions.newReleasesFailure());
+        this.store.dispatch(actions.hideLoader());
       }
     );
   };
 
   handleFeatured = () => {
     this.currentTab = 'featured';
+    this.store.dispatch(actions.showLoader());
     this.userService.getFeatured(this.tkn).subscribe(
       (response) => {
         this.store.dispatch(actions.featuredSuccess(response));
+        this.store.dispatch(actions.hideLoader());
       },
       (error) => {
         this.store.dispatch(actions.featuredFailure());
+        this.store.dispatch(actions.hideLoader());
       }
     );
   };
 
   handleGenre = (id) => {
+    this.store.dispatch(actions.showLoader());
     this.userService.getCategory(this.tkn, id).subscribe(
       (response) => {
         this.store.dispatch(actions.categorySuccess(response));
+        this.store.dispatch(actions.hideLoader());
         this.router.navigate(['category']);
       },
       (error) => {
         this.store.dispatch(actions.categoryFailure());
+        this.store.dispatch(actions.hideLoader());
       }
     );
   };
 
   handleRelease = (id) => {
+    this.store.dispatch(actions.showLoader());
     this.userService.getRelease(this.tkn, id).subscribe(
       (response) => {
         this.store.dispatch(actions.releaseSuccess(response));
+        this.store.dispatch(actions.hideLoader());
         this.router.navigate(['release']);
       },
       (error) => {
         this.store.dispatch(actions.releaseFailure());
+        this.store.dispatch(actions.hideLoader());
       }
     );
   };
 
   handlePlayList = (id) => {
+    this.store.dispatch(actions.showLoader());
     this.userService.getPlayList(this.tkn, id).subscribe(
       (response) => {
         console.log('success');
         this.store.dispatch(actions.playlistSuccess(response));
+        this.store.dispatch(actions.hideLoader());
         this.router.navigate(['playlist']);
       },
       (error) => {
         console.log('failure');
         this.store.dispatch(actions.playlistFailure());
+        this.store.dispatch(actions.hideLoader());
       }
     );
   };

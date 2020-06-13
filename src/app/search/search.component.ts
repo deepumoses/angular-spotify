@@ -45,13 +45,16 @@ export class SearchComponent implements OnInit {
   ngOnInit(): void {}
 
   handleArtist = (id) => {
+    this.store.dispatch(actions.showLoader());
     this.userService.getArtist(this.tkn, id).subscribe(
       (response) => {
         this.store.dispatch(actions.artistSuccess(response));
+        this.store.dispatch(actions.hideLoader());
         this.router.navigate(['artist']);
       },
       (error) => {
         this.store.dispatch(actions.artistFailure());
+        this.store.dispatch(actions.hideLoader());
       }
     );
   };

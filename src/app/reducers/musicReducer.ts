@@ -2,6 +2,13 @@ import * as actions from '../actions';
 
 let audio = new Audio();
 
+audio.addEventListener('timeupdate', (e: any) => {
+  const { duration, currentTime } = e.srcElement;
+  (<HTMLInputElement>(
+    document.getElementById('audio-seeker')
+  )).value = currentTime;
+});
+
 export interface musicState {
   currentSong: object;
   currentlyPlaying: object;
@@ -24,12 +31,18 @@ export function musicReducer(
     case actions.PLAY_MUSIC:
       if (!audio.src || (audio.src && audio.src !== action.url && action.url)) {
         audio.src = action.url;
+        audio.play();
+        return {
+          ...state,
+          isPlaying: true,
+        };
+      } else {
+        audio.pause();
+        return {
+          ...state,
+          isPlaying: false,
+        };
       }
-      audio.play();
-      return {
-        ...state,
-        isPlaying: true,
-      };
 
     case actions.PAUSE_MUSIC:
       audio.pause();

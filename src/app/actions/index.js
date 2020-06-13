@@ -28,6 +28,9 @@ export const FETCH_ARTIST_ALBUMS_SUCCESS = "FETCH_ARTIST_ALBUMS_SUCCESS";
 export const FETCH_ARTIST_TOP_TRACKS_SUCCESS =
   "FETCH_ARTIST_TOP_TRACKS_SUCCESS";
 export const FETCH_ARTIST_FAILURE = "FETCH_ARTIST_FAILURE";
+export const LOADER_SHOW = "LOADER_SHOW";
+export const LOADER_HIDE = "LOADER_HIDE";
+export const SET_CURRENT_PLAYLIST = "SET_CURRENT_PLAYLIST";
 
 export const PLAY_MUSIC = "PLAY_MUSIC";
 export const PAUSE_MUSIC = "PAUSE_MUSIC";
@@ -258,6 +261,19 @@ export const setSearchValueFailure = () => {
   };
 };
 
+export const showLoader = (data) => {
+  return {
+    type: LOADER_SHOW,
+    data,
+  };
+};
+
+export const hideLoader = () => {
+  return {
+    type: LOADER_HIDE,
+  };
+};
+
 // music controls
 
 export const play = (url) => {
@@ -276,6 +292,13 @@ export const pause = () => {
 export const setCurrentlyPlaying = (data) => {
   return {
     type: SET_CURRENTLY_PLAYING,
+    data,
+  };
+};
+
+export const setCurrentPlaylist = (data) => {
+  return {
+    type: SET_CURRENT_PLAYLIST,
     data,
   };
 };

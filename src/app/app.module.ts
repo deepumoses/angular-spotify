@@ -4,6 +4,8 @@ import { NgModule } from '@angular/core';
 import { HttpClientModule } from '@angular/common/http';
 import { combineReducers } from 'redux';
 import { StoreModule } from '@ngrx/store';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+
 import { apiReducer } from './reducers/apiReducer';
 import { musicReducer } from './reducers/musicReducer';
 import { MyState, INITIAL_STATE } from './store.module';
@@ -27,6 +29,7 @@ import { ServiceWorkerModule } from '@angular/service-worker';
 import { environment } from '../environments/environment';
 import { StoreDevtoolsModule } from '@ngrx/store-devtools';
 import { SearchComponent } from './search/search.component';
+import { LoaderComponent } from './loader/loader.component';
 
 @NgModule({
   declarations: [
@@ -45,9 +48,11 @@ import { SearchComponent } from './search/search.component';
     ArtistsComponent,
     ArtistComponent,
     SearchComponent,
+    LoaderComponent,
   ],
   imports: [
     BrowserModule,
+    BrowserAnimationsModule,
     AppRoutingModule,
     HttpClientModule,
     ServiceWorkerModule.register('ngsw-worker.js', {

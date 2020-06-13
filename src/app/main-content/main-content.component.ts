@@ -13,6 +13,7 @@ import * as actions from '../actions';
 })
 export class MainContentComponent implements OnInit {
   categories: Array<string>;
+  loader: boolean;
   tkn = localStorage.getItem('token');
 
   constructor(
@@ -22,6 +23,9 @@ export class MainContentComponent implements OnInit {
     store.select('apiReducer').subscribe((val) => {
       this.categories = val.categories;
     });
+    store.select('apiReducer').subscribe((val) => {
+      this.loader = val.loader;
+    });
   }
 
   ngOnInit(): void {
@@ -29,12 +33,15 @@ export class MainContentComponent implements OnInit {
   }
 
   handleGenres = () => {
+    this.store.dispatch(actions.showLoader());
     this.userService.getCategories(this.tkn).subscribe(
       (response) => {
         this.store.dispatch(actions.categoriesSuccess(response));
+        this.store.dispatch(actions.hideLoader());
       },
       (error) => {
         this.store.dispatch(actions.categoriesFailure());
+        this.store.dispatch(actions.hideLoader());
       }
     );
   };

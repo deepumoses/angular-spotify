@@ -30,23 +30,29 @@ export class AlbumsComponent implements OnInit {
   }
 
   handleAlbums = () => {
+    this.store.dispatch(actions.showLoader());
     this.userService.getAlbums(this.tkn).subscribe(
       (response) => {
         this.store.dispatch(actions.albumsSuccess(response));
+        this.store.dispatch(actions.hideLoader());
       },
       (error) => {
         this.store.dispatch(actions.albumsFailure());
+        this.store.dispatch(actions.hideLoader());
       }
     );
   };
 
   handleAlbum = (id) => {
+    this.store.dispatch(actions.showLoader());
     this.userService.getAlbum(this.tkn, id).subscribe(
       (response) => {
+        this.store.dispatch(actions.hideLoader());
         this.store.dispatch(actions.albumSuccess(response));
         this.router.navigate(['album']);
       },
       (error) => {
+        this.store.dispatch(actions.hideLoader());
         this.store.dispatch(actions.albumFailure());
       }
     );

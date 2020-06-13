@@ -43,37 +43,44 @@ export class ArtistComponent implements OnInit {
 
   ngOnInit(): void {
     if (this.artistId) {
+      this.store.dispatch(actions.showLoader());
       this.userService.getArtistsAlbums(this.tkn, this.artistId).subscribe(
         (response) => {
           this.store.dispatch(actions.artistsAlbumsSuccess(response));
+          this.store.dispatch(actions.hideLoader());
           this.store.select('apiReducer').subscribe((val) => {
             this.albums = val.artist.albums.items;
           });
         },
         (error) => {
           this.store.dispatch(actions.artistsFailure());
+          this.store.dispatch(actions.hideLoader());
         }
       );
       this.userService.getArtistsTopTracks(this.tkn, this.artistId).subscribe(
         (response) => {
           this.store.dispatch(actions.artistsTopTracksSuccess(response));
+          this.store.dispatch(actions.hideLoader());
           this.store.select('apiReducer').subscribe((val) => {
             this.topTracks = val.artist.topTracks.tracks;
           });
         },
         (error) => {
           this.store.dispatch(actions.artistsFailure());
+          this.store.dispatch(actions.hideLoader());
         }
       );
       this.userService.getArtistsRelated(this.tkn, this.artistId).subscribe(
         (response) => {
           this.store.dispatch(actions.artistsRelatedSuccess(response));
+          this.store.dispatch(actions.hideLoader());
           this.store.select('apiReducer').subscribe((val) => {
             this.artists = val.artist.related.artists;
           });
         },
         (error) => {
           this.store.dispatch(actions.artistsFailure());
+          this.store.dispatch(actions.hideLoader());
         }
       );
     }
@@ -93,25 +100,31 @@ export class ArtistComponent implements OnInit {
   };
 
   handleAlbum = (id) => {
+    this.store.dispatch(actions.showLoader());
     this.userService.getAlbum(this.tkn, id).subscribe(
       (response) => {
         this.store.dispatch(actions.albumSuccess(response));
+        this.store.dispatch(actions.hideLoader());
         this.router.navigate(['album']);
       },
       (error) => {
         this.store.dispatch(actions.albumFailure());
+        this.store.dispatch(actions.hideLoader());
       }
     );
   };
 
   handleArtist = (id) => {
+    this.store.dispatch(actions.showLoader());
     this.userService.getArtist(this.tkn, id).subscribe(
       (response) => {
         this.store.dispatch(actions.artistSuccess(response));
+        this.store.dispatch(actions.hideLoader());
         this.router.navigate(['artist']);
       },
       (error) => {
         this.store.dispatch(actions.artistFailure());
+        this.store.dispatch(actions.hideLoader());
       }
     );
   };

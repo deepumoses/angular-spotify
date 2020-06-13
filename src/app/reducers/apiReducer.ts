@@ -15,6 +15,8 @@ export interface apiState {
   artists: Array<object>;
   artist: object;
   search: object;
+  loader: boolean;
+  currentPlaylist: object;
 }
 
 export const INITIAL_API_STATE: apiState = {
@@ -32,6 +34,8 @@ export const INITIAL_API_STATE: apiState = {
   artists: [],
   artist: {},
   search: {},
+  loader: false,
+  currentPlaylist: {},
 };
 
 export function apiReducer(
@@ -153,6 +157,24 @@ export function apiReducer(
         ...state,
         artist: { ...state.artist, related: action.data },
       };
+    case actions.SET_CURRENT_PLAYLIST:
+      console.log('SET_CURRENT_PLAYLIST action', action);
+      if (action.data.tracks === null) {
+        return {
+          ...state,
+          currentPlaylist: {
+            ...state.currentPlaylist,
+            index: action.data.index,
+          },
+        };
+      }
+      return {
+        ...state,
+        currentPlaylist: {
+          tracks: action.data.tracks,
+          index: action.data.index,
+        },
+      };
     case actions.FETCH_ARTIST_FAILURE:
       return { ...state, artist: {} };
     case actions.SET_SEARCH_VALUE_SUCCESS:
@@ -163,6 +185,10 @@ export function apiReducer(
       return { ...state, search: { results: action.data } };
     case actions.SET_SEARCH_RESULTS_FAILURE:
       return { ...state, search: { results: null } };
+    case actions.LOADER_SHOW:
+      return { ...state, loader: true };
+    case actions.LOADER_HIDE:
+      return { ...state, loader: false };
     default:
       return state;
   }

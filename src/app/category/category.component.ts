@@ -29,15 +29,18 @@ export class CategoryComponent implements OnInit {
   ngOnInit(): void {}
 
   handlePlayList = (id) => {
+    this.store.dispatch(actions.showLoader());
     this.userService.getPlayList(this.tkn, id).subscribe(
       (response) => {
         console.log('success');
         this.store.dispatch(actions.playlistSuccess(response));
+        this.store.dispatch(actions.hideLoader());
         this.router.navigate(['playlist']);
       },
       (error) => {
         console.log('failure');
         this.store.dispatch(actions.playlistFailure());
+        this.store.dispatch(actions.hideLoader());
       }
     );
   };

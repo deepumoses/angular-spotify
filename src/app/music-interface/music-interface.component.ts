@@ -12,8 +12,9 @@ import * as actions from '../actions';
   styleUrls: ['./music-interface.component.scss'],
 })
 export class MusicInterfaceComponent implements OnInit {
-  currentlyPlaying;
-  isPlaying;
+  currentlyPlaying: any;
+  currentPlaylist: any;
+  isPlaying: Observable<boolean>;
 
   constructor(private store: Store<MyState>) {
     store.select('musicReducer').subscribe((val) => {
@@ -22,21 +23,73 @@ export class MusicInterfaceComponent implements OnInit {
     store.select('musicReducer').subscribe((val) => {
       this.isPlaying = val.isPlaying;
     });
+    store.select('apiReducer').subscribe((val) => {
+      this.currentPlaylist = val.currentPlaylist;
+    });
   }
 
   ngOnInit(): void {}
 
   playMusic = () => {
     this.store.dispatch(actions.play());
-    // let current = 0;
-    // setInterval(() => {
-    //   current++;
-    //   this.store.dispatch(actions.setSeek(current));
-    // }, 1000);
   };
 
   pauseMusic = () => {
     this.store.dispatch(actions.pause());
+  };
+
+  nextMusic = () => {
+    let currentPlaying = this.currentPlaylist.tracks[
+      this.currentPlaylist.index + 1
+    ].track
+      ? this.currentPlaylist.tracks[this.currentPlaylist.index + 1].track
+      : this.currentPlaylist.tracks[this.currentPlaylist.index + 1];
+    if (currentPlaying) {
+      this.store.dispatch(actions.pause());
+      this.store.dispatch(actions.play(currentPlaying.preview_url));
+      this.store.dispatch(
+        actions.setCurrentPlaylist({
+          tracks: null,
+          index: this.currentPlaylist.index + 1,
+        })
+      );
+      console.log('currentlyPlaying', currentPlaying);
+      this.store.dispatch(actions.setCurrentlyPlaying(currentPlaying));
+    } else {
+      this.store.dispatch(
+        actions.setCurrentPlaylist({
+          tracks: null,
+          index: 0,
+        })
+      );
+    }
+  };
+
+  prevMusic = () => {
+    let currentPlaying = this.currentPlaylist.tracks[
+      this.currentPlaylist.index - 1
+    ].track
+      ? this.currentPlaylist.tracks[this.currentPlaylist.index - 1].track
+      : this.currentPlaylist.tracks[this.currentPlaylist.index - 1];
+    if (currentPlaying) {
+      this.store.dispatch(actions.pause());
+      this.store.dispatch(actions.play(currentPlaying.preview_url));
+      this.store.dispatch(
+        actions.setCurrentPlaylist({
+          tracks: null,
+          index: this.currentPlaylist.index - 1,
+        })
+      );
+      console.log('currentlyPlaying', currentPlaying);
+      this.store.dispatch(actions.setCurrentlyPlaying(currentPlaying));
+    } else {
+      this.store.dispatch(
+        actions.setCurrentPlaylist({
+          tracks: null,
+          index: this.currentPlaylist.tracks.length - 1,
+        })
+      );
+    }
   };
 
   updateVolume = (e) => {
@@ -45,5 +98,9 @@ export class MusicInterfaceComponent implements OnInit {
 
   updateSeek = (e) => {
     this.store.dispatch(actions.setSeek(e.target.value));
+  };
+
+  redirect = (url) => {
+    window.location.href = url;
   };
 }

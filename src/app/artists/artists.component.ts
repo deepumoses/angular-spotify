@@ -32,24 +32,30 @@ export class ArtistsComponent implements OnInit {
   }
 
   handleArtists = () => {
+    this.store.dispatch(actions.showLoader());
     this.userService.getArtists(this.tkn).subscribe(
       (response) => {
         this.store.dispatch(actions.artistsSuccess(response));
+        this.store.dispatch(actions.hideLoader());
       },
       (error) => {
         this.store.dispatch(actions.artistsFailure());
+        this.store.dispatch(actions.hideLoader());
       }
     );
   };
 
   handleArtist = (id) => {
+    this.store.dispatch(actions.showLoader());
     this.userService.getArtist(this.tkn, id).subscribe(
       (response) => {
         this.store.dispatch(actions.artistSuccess(response));
+        this.store.dispatch(actions.hideLoader());
         this.router.navigate(['artist']);
       },
       (error) => {
         this.store.dispatch(actions.artistFailure());
+        this.store.dispatch(actions.hideLoader());
       }
     );
   };

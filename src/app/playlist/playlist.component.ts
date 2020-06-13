@@ -35,7 +35,13 @@ export class PlaylistComponent implements OnInit {
 
   ngOnInit(): void {}
 
-  playMusic = (url, currentlyPlayingData) => {
+  playMusic = (url, currentlyPlayingData, index) => {
+    this.store.dispatch(
+      actions.setCurrentPlaylist({
+        tracks: this.playlist,
+        index,
+      })
+    );
     this.store.dispatch(actions.play(url));
     this.store.dispatch(actions.setCurrentlyPlaying(currentlyPlayingData));
   };

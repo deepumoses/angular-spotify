@@ -37,17 +37,26 @@ export class RecentComponent implements OnInit {
   }
 
   handleRecent = () => {
+    this.store.dispatch(actions.showLoader());
     this.userService.getRecent(this.tkn).subscribe(
       (response) => {
         this.store.dispatch(actions.recentSuccess(response));
+        this.store.dispatch(actions.hideLoader());
       },
       (error) => {
         this.store.dispatch(actions.recentFailure());
+        this.store.dispatch(actions.hideLoader());
       }
     );
   };
 
-  playMusic = (url, currentlyPlayingData) => {
+  playMusic = (url, currentlyPlayingData, index) => {
+    this.store.dispatch(
+      actions.setCurrentPlaylist({
+        tracks: this.recents,
+        index,
+      })
+    );
     this.store.dispatch(actions.play(url));
     this.store.dispatch(actions.setCurrentlyPlaying(currentlyPlayingData));
   };
@@ -58,5 +67,6 @@ export class RecentComponent implements OnInit {
 
   redirect = (url) => {
     window.location.href = url;
+    this.store.dispatch(actions.hideLoader());
   };
 }

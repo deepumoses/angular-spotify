@@ -35,7 +35,13 @@ export class ReleaseComponent implements OnInit {
 
   ngOnInit(): void {}
 
-  playMusic = (url, currentlyPlayingData) => {
+  playMusic = (url, currentlyPlayingData, index) => {
+    this.store.dispatch(
+      actions.setCurrentPlaylist({
+        tracks: this.release,
+        index,
+      })
+    );
     this.store.dispatch(actions.play(url));
     this.store.dispatch(actions.setCurrentlyPlaying(currentlyPlayingData));
   };

@@ -50,12 +50,15 @@ export class HeaderComponent implements OnInit {
     let tkn = localStorage.getItem('token');
     let searchVal = e.target.value;
     this.store.dispatch(actions.setSearchValueSuccess(searchVal));
+    this.store.dispatch(actions.showLoader());
     this.userService.getSearchResults(tkn, searchVal).subscribe(
       (response) => {
         this.store.dispatch(actions.searchResultsSuccess(response));
+        this.store.dispatch(actions.hideLoader());
       },
       (error) => {
         this.store.dispatch(actions.searchResultsFailure());
+        this.store.dispatch(actions.hideLoader());
       }
     );
   };

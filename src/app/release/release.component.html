@@ -1,8 +1,16 @@
 <div class="release">
   <h1>Release</h1>
   <div class="content">
-    <div *ngFor="let rl of release">
-      <div class="music-mini-card">
+    <div *ngFor="let rl of release; index as ind">
+      <div
+        class="music-mini-card"
+        [ngClass]="{
+          active:
+            currentlyPlaying && rl && currentlyPlaying.id
+              ? currentlyPlaying.id === rl.id && isPlaying
+              : false
+        }"
+      >
         <div class="name">
           <span>{{ rl.name }}</span>
           <span class="artist-name">{{ rl.artists[0].name }}</span>
@@ -15,7 +23,7 @@
           ></i>
           <ng-template #play
             ><i
-              (click)="playMusic(rl.preview_url, rl)"
+              (click)="playMusic(rl.preview_url, rl, ind)"
               class="fas fa-play"
               *ngIf="rl.preview_url"
             ></i
