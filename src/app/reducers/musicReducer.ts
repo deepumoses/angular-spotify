@@ -31,18 +31,12 @@ export function musicReducer(
     case actions.PLAY_MUSIC:
       if (!audio.src || (audio.src && audio.src !== action.url && action.url)) {
         audio.src = action.url;
-        audio.play();
-        return {
-          ...state,
-          isPlaying: true,
-        };
-      } else {
-        audio.pause();
-        return {
-          ...state,
-          isPlaying: false,
-        };
       }
+      audio.play();
+      return {
+        ...state,
+        isPlaying: true,
+      };
 
     case actions.PAUSE_MUSIC:
       audio.pause();

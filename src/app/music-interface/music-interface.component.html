@@ -21,20 +21,11 @@
         <i class="fas fa-angle-left"></i>
       </div>
       <div class="play">
-        <ng-template *ngIf="CP.url; else uriBtn"
-          ><i
-            class="far fa-play-circle"
-            (click)="playMusic()"
-            *ngIf="!isPlaying"
-          ></i
-        ></ng-template>
-        <ng-template #uriBtn>
-          <i
-            class="far fa-play-circle"
-            *ngIf="!isPlaying"
-            (click)="redirect(CP.uri)"
-          ></i
-        ></ng-template>
+        <i
+          class="far fa-play-circle"
+          (click)="playMusic()"
+          *ngIf="!isPlaying"
+        ></i>
         <i
           class="fas fa-pause-circle"
           (click)="pauseMusic()"
