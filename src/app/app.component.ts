@@ -36,10 +36,14 @@ export class AppComponent {
       window.location.href = prodredirurl;
     }, hash.expires_in * 1000);
 
+    function isLocalHost(url = window.location.href) {
+      return url.indexOf('localhost') !== -1 || url.indexOf('127.0.0.1') !== -1;
+    }
+
     console.log('hash', hash.expires_in);
 
     if (!hash.access_token) {
-      window.location.href = `https://accounts.spotify.com/authorize?client_id=22553693d2b448c0b3b63ed0176248be&scope=playlist-read-private%20playlist-read-collaborative%20playlist-modify-public%20user-read-recently-played%20playlist-modify-private%20ugc-image-upload%20user-follow-modify%20user-follow-read%20user-library-read%20user-library-modify%20user-read-private%20user-read-email%20user-top-read%20user-read-playback-state&response_type=token&redirect_uri=${localredirurl}`;
+      window.location.href = `https://accounts.spotify.com/authorize?client_id=22553693d2b448c0b3b63ed0176248be&scope=playlist-read-private%20playlist-read-collaborative%20playlist-modify-public%20user-read-recently-played%20playlist-modify-private%20ugc-image-upload%20user-follow-modify%20user-follow-read%20user-library-read%20user-library-modify%20user-read-private%20user-read-email%20user-top-read%20user-read-playback-state&response_type=token&redirect_uri=${isLocalHost() ? localredirurl : prodredirurl}`;
     } else {
       console.log(hash.access_token);
       // this.ngRedux.dispatch(actions.setToken(hash.access_token));
